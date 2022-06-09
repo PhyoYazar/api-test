@@ -1,0 +1,11 @@
+.container {
+  width: 100vw;
+}
+
+.text {
+  font-size: 5rem;
+  font-weight: 500;
+  width: 114rem;
+  margin: 6rem auto;
+  text-align: center;
+}

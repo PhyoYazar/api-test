@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
 
 *,
 *::after,
@@ -15,4 +15,27 @@ html {
 body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  width: 100vw;
+}
+
+.btn {
+  border: none;
+  padding: 1rem 3rem;
+  font-weight: 500;
+  font-size: 1.8rem;
+  background-color: #175703;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background-color: rgba(23, 87, 3, 0.896);
+  transform: translateY(-0.1rem);
+}
+
+.btn:active {
+  transform: translateY(0.05rem);
+  background-color: #175703;
 }

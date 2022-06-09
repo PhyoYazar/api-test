@@ -1,0 +1,40 @@
+.login__page {
+  width: 50rem;
+  background-color: #ccc;
+  margin: 6rem auto;
+  padding: 4rem;
+}
+
+.heading__secondary {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.form {
+  font-size: 1.6rem;
+}
+
+.input__box {
+  margin-bottom: 2.5rem;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.form__input {
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: inherit;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  border-bottom: 3px solid #ccc;
+
+  border: none;
+  display: flex;
+}
+
+.form__input:focus {
+  outline: 3px solid #029023;
+}

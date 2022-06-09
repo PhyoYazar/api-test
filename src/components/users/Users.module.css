@@ -1,0 +1,63 @@
+.logout__btn {
+  position: fixed;
+  top: 5%;
+  right: 5%;
+}
+
+.users {
+  width: 50rem;
+  margin: 6rem auto;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  /* gap: 3rem; */
+}
+
+.user {
+  background-color: #bbb;
+  padding: 2rem 4rem;
+  border-radius: 3px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  font-size: 1.8rem;
+}
+
+.text:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.email {
+  margin-left: 3.4rem;
+}
+
+.role {
+  margin-left: 4.3rem;
+}
+
+span {
+  margin-left: 3rem;
+}
+
+.password__btn {
+  margin: 2rem 0;
+  display: block;
+}
+
+.change__password {
+  margin-top: 4rem;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 1.4rem;
+  font-size: 1.5rem;
+  font-family: inherit;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  border-bottom: 3px solid #ccc;
+
+  border: none;
+}
+
+.input:focus {
+  outline: 3px solid #029023;
+}
