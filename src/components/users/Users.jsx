@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import AuthContext from '../../context/auth-context';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { cookies } from '../../API/cookie';
 
 import classes from './Users.module.css';
 
 const Users = () => {
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const [user, setUser] = useState({});
+
+  const navigate = useNavigate();
 
   const oldPassword = useRef();
   const newPassword = useRef();
@@ -17,14 +19,12 @@ const Users = () => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        `https://oakaweapi.herokuapp.com/api/v1/users/user`,
-        { withCredentials: true }
+        `https://oakaweapi.herokuapp.com/api/v1/users/user`
       );
       console.log(response);
     } catch (error) {
       console.log(error);
     }
-    // if (response.statusText !== 'OK') throw new Error("Can't fetch the user");
   };
 
   useEffect(() => {
@@ -44,6 +44,11 @@ const Users = () => {
     //     setUser(...user);
     //   });
   }, []);
+
+  const logoutHandler = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
 
   const changePasswordHandler = async () => {
     try {
@@ -72,7 +77,7 @@ const Users = () => {
       if (response.statusText !== 'OK') throw new Error('wrong password');
 
       console.log(response.data.msg);
-      setOpenChangePassword((prevState) => !prevState);
+      // setOpenChangePassword(false);
     } catch (error) {
       console.log(error.message);
       alert(error.message);
@@ -81,7 +86,7 @@ const Users = () => {
 
   return (
     <div>
-      <button className={`btn ${classes.logout__btn}`} onClick={logout}>
+      <button className={`btn ${classes.logout__btn}`} onClick={logoutHandler}>
         Logout
       </button>
       ;
@@ -102,6 +107,7 @@ const Users = () => {
             <span className={classes.role}>:</span>
             <span>{user?.role}</span>
           </p>
+
           {openChangePassword && (
             <div className={classes.change__password}>
               <input
@@ -121,13 +127,25 @@ const Users = () => {
             </div>
           )}
 
-          <button
-            type='button'
-            className={`btn ${classes.password__btn}`}
-            onClick={changePasswordHandler}
-          >
-            {openChangePassword ? 'Confirm' : 'Change Password'}
-          </button>
+          {!openChangePassword && (
+            <button
+              type='button'
+              className={`btn ${classes.password__btn}`}
+              onClick={() => setOpenChangePassword((prevState) => !prevState)}
+            >
+              Change Password
+            </button>
+          )}
+
+          {openChangePassword && (
+            <button
+              type='button'
+              className={`btn ${classes.password__btn}`}
+              onClick={changePasswordHandler}
+            >
+              Confirm
+            </button>
+          )}
         </div>
       </div>
     </div>

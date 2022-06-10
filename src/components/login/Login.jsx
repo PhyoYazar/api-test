@@ -1,16 +1,14 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../../context/auth-context';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { cookies } from '../../API/cookie';
-// import cookieClient from 'react-cookie';
-
 import classes from './Login.module.css';
 
 const Login = () => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
 
-  // let cookie = cookieClient.load(cookies);
+  const navigate = useNavigate();
 
   const authCtx = useContext(AuthContext);
 
@@ -25,21 +23,12 @@ const Login = () => {
           email: enteredEmail,
           password: enteredPassword,
         },
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Set-Cookie': cookies,
-        },
+        // headers: { Authorization: 'TOKEN' },
       });
       console.log(response);
 
-      // if (response.statusText !== 'OK') {
-      //   throw new Error('Authentication failed. Try again!!');
-      // }
-      console.log(response.headers['Set-Cookie']);
-
       authCtx.login(response.data.user.userId);
-      // cookieClient.save(cookies);
+      navigate('/user', { replace: true });
     } catch (error) {
       alert(error.message);
     }
@@ -68,8 +57,6 @@ const Login = () => {
     //     .catch((error) => {
     //       alert(error.message);
     //     });
-
-    console.log(enteredEmail, enteredPassword);
   };
 
   return (
