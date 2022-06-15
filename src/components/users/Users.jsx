@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import classes from './Users.module.css';
 
+axios.defaults.withCredentials = true;
+
 const Users = () => {
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const [user, setUser] = useState({});

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import classes from './Login.module.css';
 
+axios.defaults.withCredentials = true;
+
 const Login = () => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
@@ -23,8 +25,17 @@ const Login = () => {
           email: enteredEmail,
           password: enteredPassword,
         },
-        // headers: { Authorization: 'TOKEN' },
+        withCredentials: true,
+        crossDomain: true,
+        headers: {
+          'Access-Control-Allow-Origin': 'https://oakaweapi.herokuapp.com',
+          'Content-Type': 'application/json',
+        },
       });
+      if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+      }
+
       console.log(response);
 
       authCtx.login(response.data.user.userId);
